@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface ProductRepositoryPort {
 
-    List<Product> findAll();
+    List<Product> findAll(String category, String sortBy, boolean asc);
 
 }

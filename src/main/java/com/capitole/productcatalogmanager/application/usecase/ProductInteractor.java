@@ -14,7 +14,7 @@ public class ProductInteractor implements ProductUseCase {
     private final ProductRepositoryPort productRepositoryPort;
 
     @Override
-    public List<Product> getProducts() {
-        return productRepositoryPort.findAll();
+    public List<Product> getProducts(String category, String sortBy, boolean asc) {
+        return productRepositoryPort.findAll(category, sortBy, asc);
     }
 }

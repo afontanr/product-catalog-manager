@@ -28,4 +28,20 @@ public class ProductControllerIntegrationTest {
                 .andExpect(status().isOk());
     }
 
+    @Test
+    @Sql(value = "/sql/INSERT_DATA.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = "/sql/CLEAN_DATA.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    public void whenSortByInvalidReturnBadRequest() throws Exception {
+        mockMvc.perform(get("/products?sortBy=pricee"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @Sql(value = "/sql/INSERT_DATA.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = "/sql/CLEAN_DATA.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    public void whenSortByValidReturnOk() throws Exception {
+        mockMvc.perform(get("/products?sortBy=price"))
+                .andExpect(status().isOk());
+    }
+
 }

@@ -13,6 +13,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -29,16 +31,16 @@ public class ProductUseCaseTest {
 
     @Test
     public void whenNoResultsThenReturnEmptyList() {
-        when(productUseCase.getProducts()).thenReturn(getEmptyList());
-        List<Product> list = productUseCase.getProducts();
+        when(productUseCase.getProducts(any(), any(), eq(true))).thenReturn(getEmptyList());
+        List<Product> list = productUseCase.getProducts(null, "sku", true);
         assertTrue(list.isEmpty());
     }
 
     @Test
     public void whenFindProductsThenReturnAllOfThem() {
         List<Product> expected = getProducts();
-        when(productUseCase.getProducts()).thenReturn(expected);
-        List<Product> actual = productUseCase.getProducts();
+        when(productUseCase.getProducts(any(), any(), eq(true))).thenReturn(expected);
+        List<Product> actual = productUseCase.getProducts(null, "sku", true);
         assertEquals(expected, actual);
     }
 

@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface ProductUseCase {
 
-    List<Product> getProducts();
+    List<Product> getProducts(String category, String sortBy, boolean asc);
 
 }
