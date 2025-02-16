@@ -12,7 +12,13 @@ public class ProductDtoMapper {
     }
 
     public static ProductDto fromDomainToDto(Product product) {
-        return new ProductDto(product.getSku(), product.getPrice(), product.getDescription(), product.getCategory());
+        return new ProductDto(
+                product.getSku(),
+                product.getPrice(),
+                product.getDescription(),
+                product.getCategory(),
+                product.getDiscount(),
+                product.getPriceWithDiscount());
     }
 
     public static List<ProductDto> fromDomainListToDtoList(List<Product> productList) {

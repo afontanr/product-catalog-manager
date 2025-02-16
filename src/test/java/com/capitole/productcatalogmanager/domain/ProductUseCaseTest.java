@@ -52,6 +52,6 @@ public class ProductUseCaseTest {
         return List.of(new Product("SKU001",
                 BigDecimal.valueOf(100.0),
                 "Product 1",
-                "Description 1"));
+                "Description 1", null, null));
     }
 }

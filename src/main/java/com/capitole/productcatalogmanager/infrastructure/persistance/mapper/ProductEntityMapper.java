@@ -13,7 +13,13 @@ public class ProductEntityMapper {
     }
 
     public static Product fromEntityToDomain(ProductEntity entity) {
-        return new Product(entity.getSku(),entity.getPrice(), entity.getDescription(), entity.getCategory());
+        return new Product(
+                entity.getSku(),
+                entity.getPrice(),
+                entity.getDescription(),
+                entity.getCategory(),
+                null,
+                null);
     }
 
     public static List<Product> fromEntityListToDomainList(List<ProductEntity> entityList) {

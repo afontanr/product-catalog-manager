@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Getter
 @AllArgsConstructor
@@ -20,5 +21,14 @@ public class Product {
     private BigDecimal price;
     private String description;
     private String category;
+    private BigDecimal discount;
+    private BigDecimal priceWithDiscount;
+
+    public void applyDiscount(BigDecimal discount) {
+        this.discount = discount;
+        BigDecimal discountAmount = this.price.multiply(this.discount)
+                .divide(BigDecimal.valueOf(100), RoundingMode.HALF_UP);
+        this.priceWithDiscount = this.price.subtract(discountAmount);
+    }
 
 }
