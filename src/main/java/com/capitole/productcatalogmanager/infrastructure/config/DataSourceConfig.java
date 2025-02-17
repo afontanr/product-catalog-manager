@@ -8,6 +8,10 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
+/**
+ * Configuration class for setting up the application's data source.
+ * Uses HikariCP for connection pooling and integrates Flyway for database migrations.
+ */
 @Configuration
 public class DataSourceConfig {
 
@@ -17,6 +21,11 @@ public class DataSourceConfig {
         this.dataSourceProperties = dataSourceProperties;
     }
 
+    /**
+     * Creates and configures a HikariCP {@link DataSource} using application properties.
+     *
+     * @return A configured {@link DataSource} instance.
+     */
     @Bean
     public DataSource dataSource() {
         HikariConfig hikariConfig = new HikariConfig();
@@ -36,6 +45,12 @@ public class DataSourceConfig {
         return new HikariDataSource(hikariConfig);
     }
 
+    /**
+     * Configures and initializes Flyway for database migrations.
+     *
+     * @param dataSource The data source used for database migrations.
+     * @return A configured {@link Flyway} instance.
+     */
     @Bean
     public Flyway flyway(DataSource dataSource) {
         Flyway flyway = Flyway.configure()
